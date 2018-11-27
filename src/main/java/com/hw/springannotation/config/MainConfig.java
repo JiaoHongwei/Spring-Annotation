@@ -53,7 +53,8 @@ public class MainConfig {
      *
      * @return
      */
-    @Scope("prototype") // 多实例
+//    @Scope("prototype") // 多实例
+    @Lazy // 单实例下懒加载bean
     @Bean(value = "pension01")   // 给容器中注册一个 Bean ；类型为返回值类型，id默认为方法名,
     public Pension pension() {
         return new Pension("hongwei", 24);
