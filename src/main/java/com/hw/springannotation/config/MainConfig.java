@@ -7,6 +7,7 @@ import com.hw.springannotation.conditional.LinuxConditional;
 import com.hw.springannotation.conditional.MyImportBeanDefinitionRegistrar;
 import com.hw.springannotation.conditional.MyImportSelector;
 import com.hw.springannotation.conditional.WindowsConditional;
+import com.hw.springannotation.beans.ColorFactoryBean;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.*;
 
@@ -89,4 +90,8 @@ public class MainConfig {
         return new Pension("linus", 48);
     }
 
+    @Bean
+    public ColorFactoryBean colorFactoryBean() {
+        return new ColorFactoryBean();
+    }
 }
