@@ -1,5 +1,7 @@
 package com.hw.springannotation.beans;
 
+import org.springframework.beans.factory.annotation.Value;
+
 /**
  * @Description TODO
  * @Author hw
@@ -7,9 +9,17 @@ package com.hw.springannotation.beans;
  * @Version 1.0
  */
 public class Pension {
-
+    /**
+     * 使用@Value赋值：
+     * 1. 基本数值
+     * 2. 可以写SPEL 表达式，例如： #{}
+     * 3. 可以写${} ,取出配置文件中的值（在运行环境变量里面的值）
+     */
+    @Value("张三")
     private String name;
+    @Value("#{22-1}")
     private Integer age;
+
 
     public Pension() {
     }
