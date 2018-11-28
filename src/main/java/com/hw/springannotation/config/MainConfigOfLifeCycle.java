@@ -1,9 +1,9 @@
 package com.hw.springannotation.config;
 
 import com.hw.springannotation.beans.Car;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+import com.hw.springannotation.beans.Cat;
+import org.springframework.context.annotation.*;
+import org.springframework.stereotype.Component;
 
 /**
  * @Description bean生命周期
@@ -16,12 +16,19 @@ import org.springframework.context.annotation.Scope;
  * @Version 1.0
  */
 @Configuration
+@ComponentScan("com.hw.springannotation.beans")
 public class MainConfigOfLifeCycle {
 
-    @Scope("prototype") // 多实例
-    @Bean(initMethod = "init",destroyMethod = "destroy")
+    //    @Scope("prototype") // 多实例
+    @Bean(initMethod = "init", destroyMethod = "destroy")
     public Car car() {
         return new Car();
     }
+
+    @Bean
+    public Cat cat() {
+        return new Cat();
+    }
+
 
 }

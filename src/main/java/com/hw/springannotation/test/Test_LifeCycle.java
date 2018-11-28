@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 /**
  * @Description TODO
  * @Author hw
@@ -18,10 +21,14 @@ public class Test_LifeCycle {
     AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfigOfLifeCycle.class);
 
     @Test
+    @PostConstruct
+    @PreDestroy
     public void test() {
         System.out.println("IOC容器创建完成...");
 
         // 关闭容器
         applicationContext.close();
     }
+
+
 }

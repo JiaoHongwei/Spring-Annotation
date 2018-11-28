@@ -11,10 +11,12 @@ public class Car {
     public Car() {
         System.out.println("Car construct...");
     }
-    public void init(){
+
+    public void init() {
         System.out.println("Car init ...");
     }
-    public void destroy(){
+
+    public void destroy() {
         System.out.println("Car destroy ...");
     }
 }
