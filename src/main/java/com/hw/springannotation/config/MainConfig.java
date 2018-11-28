@@ -1,11 +1,14 @@
 package com.hw.springannotation.config;
 
+import com.hw.springannotation.beans.Color;
 import com.hw.springannotation.beans.Pension;
-import com.hw.springannotation.service.BookService;
+import com.hw.springannotation.beans.Red;
+import com.hw.springannotation.conditional.LinuxConditional;
+import com.hw.springannotation.conditional.MyImportBeanDefinitionRegistrar;
+import com.hw.springannotation.conditional.MyImportSelector;
+import com.hw.springannotation.conditional.WindowsConditional;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.*;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 
 /**
  * @Description 配置类=配置文件
@@ -14,7 +17,8 @@ import org.springframework.stereotype.Service;
  * @Version 1.0
  */
 @Configuration  // 告诉spring 这是一个配置类
-//@ComponentScan(value = "com.hw.springannotation")
+@Conditional({WindowsConditional.class})
+@ComponentScan(value = "com.hw.springannotation")
 //@ComponentScan(value = "com.hw.springannotation",
 //        excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {Controller.class, Service.class})}
 //)   // 指定排除
@@ -27,13 +31,15 @@ import org.springframework.stereotype.Service;
 //        ), @ComponentScan(value = "com.hw.springannotation",
 //        excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {Controller.class, Service.class})})
 //})
-@ComponentScan(value = "com.hw.springannotation", useDefaultFilters = false,
-        includeFilters = {
+//@ComponentScan(value = "com.hw.springannotation", useDefaultFilters = false,
+//        includeFilters = {
 //        @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {Controller.class}),
 //                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {BookService.class}),
-                @ComponentScan.Filter(type = FilterType.CUSTOM, classes = {MyTypeFilter.class})
-        }
-)       // 指定只扫描
+//                @ComponentScan.Filter(type = FilterType.CUSTOM, classes = {MyTypeFilter.class})
+//        }
+//)       // 指定只扫描
+@Import({Color.class, Red.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class})
+// 快速导入组建，ID 默认是全路径包名
 public class MainConfig {
 
     /**
@@ -55,8 +61,32 @@ public class MainConfig {
      */
 //    @Scope("prototype") // 多实例
     @Lazy // 单实例下懒加载bean
-    @Bean(value = "pension01")   // 给容器中注册一个 Bean ；类型为返回值类型，id默认为方法名,
+    @Bean(value = "pension")   // 给容器中注册一个 Bean ；类型为返回值类型，id默认为方法名,
     public Pension pension() {
         return new Pension("hongwei", 24);
     }
+
+    /**
+     * 如果是windows 注册bill
+     *
+     * @return
+     */
+    @Conditional({WindowsConditional.class})
+    @Bean("bill")
+    public Pension pension01() {
+        return new Pension("bill", 23);
+    }
+
+
+    /**
+     * linux
+     *
+     * @return
+     */
+    @Bean("linus")
+    @Conditional({LinuxConditional.class})
+    public Pension pension02() {
+        return new Pension("linus", 48);
+    }
+
 }
