@@ -1,5 +1,6 @@
 package com.hw.springannotation.test;
 
+import com.hw.springannotation.beans.Car;
 import com.hw.springannotation.config.MainConfigOfAutowired;
 import com.hw.springannotation.dao.BookRepository;
 import com.hw.springannotation.service.BookService;
@@ -17,9 +18,11 @@ public class Test_Autowired {
 
     @Test
     public void test1() {
-        BookService bookService = applicationContext.getBean(BookService.class);
-        System.out.println(bookService);
+//        BookService bookService = applicationContext.getBean(BookService.class);
+//        System.out.println(bookService);
 
+        Car bean = applicationContext.getBean(Car.class);
+        System.out.println(bean);
         applicationContext.close();
     }
 }
