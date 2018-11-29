@@ -19,14 +19,22 @@ public class Pension {
     private String name;
     @Value("#{22-1}")
     private Integer age;
+    @Value("${nickName}")
+    private String nickName;
 
 
     public Pension() {
     }
 
-    public Pension(String name, Integer age) {
+    public Pension(String name, int age) {
         this.name = name;
         this.age = age;
+    }
+
+    public Pension(String name, int age, String nickName) {
+        this.name = name;
+        this.age = age;
+        this.nickName = nickName;
     }
 
     public String getName() {
@@ -45,11 +53,20 @@ public class Pension {
         this.age = age;
     }
 
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
     @Override
     public String toString() {
         return "Pension{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
+                ", nickName='" + nickName + '\'' +
                 '}';
     }
 }

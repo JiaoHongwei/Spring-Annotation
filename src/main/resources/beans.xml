@@ -6,9 +6,11 @@
 
     <!--包扫描 ， 只要标注了 @Controller 、@Service、@Repository、@Component的类 都会被扫描-->
     <context:component-scan base-package="com.hw.springannotation"></context:component-scan>
-
+    <!--导入配置文件中的属性值-->
+    <context:property-placeholder location="classpath:pension.properties"></context:property-placeholder>
     <bean id="pension" class="com.hw.springannotation.beans.Pension" scope="prototype" init-method="" destroy-method="">
         <property name="name" value="hw"></property>
         <property name="age" value="18"></property>
+        <property name="nickName" value="${nickName}"></property>
     </bean>
 </beans>

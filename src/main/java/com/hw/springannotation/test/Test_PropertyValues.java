@@ -23,7 +23,9 @@ public class Test_PropertyValues {
 
         Pension pension = (Pension) applicationContext.getBean("pension");
         System.out.println(pension);
-
+        // 通过 applicationContext 获取配置文件值
+        String nickName = applicationContext.getEnvironment().getProperty("nickName");
+        System.out.println(nickName);
         // 关闭容器
         applicationContext.close();
     }
