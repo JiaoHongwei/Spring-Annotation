@@ -1,15 +1,14 @@
 package com.hw.springannotation.config;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import org.springframework.aop.target.CommonsPool2TargetSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.EmbeddedValueResolverAware;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringValueResolver;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 
@@ -35,6 +34,7 @@ public class MainConfigOfProfile implements EmbeddedValueResolverAware {
         this.driveClassName = this.resolver.resolveStringValue("${db.driveClassName}");
     }
 
+    @Profile("test")
     @Bean
     public DataSource dataSourceTest(@Value("${db.password}") String password) throws PropertyVetoException {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
@@ -45,6 +45,7 @@ public class MainConfigOfProfile implements EmbeddedValueResolverAware {
         return dataSource;
     }
 
+    @Profile("dev")
     @Bean
     public DataSource dataSourceDev(@Value("${db.password}") String password) throws PropertyVetoException {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
@@ -55,6 +56,7 @@ public class MainConfigOfProfile implements EmbeddedValueResolverAware {
         return dataSource;
     }
 
+    @Profile("prod")
     @Bean
     public DataSource dataSourceProd(@Value("${db.password}") String password) throws PropertyVetoException {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
