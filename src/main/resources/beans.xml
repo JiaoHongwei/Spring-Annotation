@@ -2,15 +2,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--包扫描 ， 只要标注了 @Controller 、@Service、@Repository、@Component的类 都会被扫描-->
     <context:component-scan base-package="com.hw.springannotation"></context:component-scan>
     <!--导入配置文件中的属性值-->
-    <context:property-placeholder location="classpath:pension.properties"></context:property-placeholder>
-    <bean id="pension" class="com.hw.springannotation.beans.Pension" scope="prototype" init-method="" destroy-method="">
+    <context:property-placeholder
+            location="classpath:pension.properties"></context:property-placeholder>
+    <bean id="pension" class="com.hw.springannotation.beans.Pension" scope="prototype"
+          init-method="" destroy-method="">
         <property name="name" value="hw"></property>
         <property name="age" value="18"></property>
         <property name="nickName" value="${nickName}"></property>
     </bean>
+    <!--开启基于配置文件版的切面功能-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 </beans>
