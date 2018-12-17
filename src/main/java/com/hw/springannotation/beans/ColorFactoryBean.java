@@ -19,6 +19,7 @@ public class ColorFactoryBean implements FactoryBean<Color> {
     public Color getObject() throws Exception {
         System.out.println("ColorFactoryBean……");
         return new Color();
+
     }
 
     /**

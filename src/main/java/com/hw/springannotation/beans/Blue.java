@@ -7,4 +7,7 @@ package com.hw.springannotation.beans;
  * @Version 1.0
  */
 public class Blue {
+    public Blue() {
+        System.out.println("Blue construct....");
+    }
 }
